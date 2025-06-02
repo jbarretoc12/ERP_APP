@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AppRiveraDiesel.ViewModels"
+             x:Class="AppRiveraDiesel.Views.RegisterPage"
+             BackgroundColor="White">
+
+    <!--<ContentPage.BindingContext>
+        <vm:RegisterViewModel />
+    </ContentPage.BindingContext>-->
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20">
+
+            <!-- Logo (opcional) -->
+            <!--
+            <Image Source="logord.png"
+                   HeightRequest="100"
+                   WidthRequest="100"
+                   HorizontalOptions="Center"
+                   Margin="0,20,0,10" />-->
+
+            <Label Text="Crear cuenta" FontSize="24" FontAttributes="Bold" HorizontalOptions="Center" />
+
+            <!-- Nombre -->
+            <Frame BackgroundColor="#F5F5F5" CornerRadius="12" Padding="10" HasShadow="False">
+                <Entry Placeholder="Nombres y Apellidos" Text="{Binding FullName}" />
+            </Frame>
+
+            <!-- Correo -->
+            <Frame BackgroundColor="#F5F5F5" CornerRadius="12" Padding="10" HasShadow="False">
+                <Entry Placeholder="Email" Text="{Binding Email}" Keyboard="Email" />
+            </Frame>
+
+            <!-- Contraseña -->
+            <Frame BackgroundColor="#F5F5F5" CornerRadius="12" Padding="10" HasShadow="False">
+                <Entry Placeholder="Contraseña" Text="{Binding Password}" IsPassword="True" />
+            </Frame>
+
+            <!-- Confirmar contraseña -->
+            <Frame BackgroundColor="#F5F5F5" CornerRadius="12" Padding="10" HasShadow="False">
+                <Entry Placeholder="Confirmar contraseña" Text="{Binding ConfirmPassword}" IsPassword="True" />
+            </Frame>
+
+            <!-- Botón de registro -->
+            <Button Text="Registrarse"
+                    Command="{Binding RegisterCommand}"
+                    BackgroundColor="#EB060C"
+                    TextColor="White"
+                    CornerRadius="25"
+                    HeightRequest="50"
+                    FontAttributes="Bold"
+                    Margin="0,20,0,0" />
+
+            <!-- Ir al login -->
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <Label Text="¿Ya tienes una cuenta? " />
+                <Label Text="Iniciar Sesion"
+                       TextColor="#EB060C"
+                       FontAttributes="Bold">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToLoginCommand}" />
+                    </Label.GestureRecognizers>
+                </Label>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

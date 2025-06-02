@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:AppRiveraDiesel.ViewModels"
+             x:Class="AppRiveraDiesel.Views.LoginPage"
+             BackgroundColor="White">
+
+    <!--<ContentPage.BindingContext>
+        <vm:LoginViewModel />
+    </ContentPage.BindingContext>-->
+
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20">
+
+            <!-- Fondo curvo superior --><!--
+            <Frame BackgroundColor="#4CAF50"
+                   CornerRadius="150"
+                   HeightRequest="180"
+                   HasShadow="False"
+                   Padding="0"
+                   HorizontalOptions="Center"
+                   WidthRequest="300" />-->
+
+            <!-- LOGO CENTRADO -->
+            <Image Source="logord.png"
+               HeightRequest="250"
+               WidthRequest="250"
+               HorizontalOptions="Center"
+                />
+
+            <!-- Usuario -->
+            <Frame CornerRadius="12" Padding="10" BackgroundColor="#F5F5F5" HasShadow="False">
+                <Entry Placeholder="Correo Electrónico"
+                       Text="{Binding Email}"
+                       PlaceholderColor="Gray"
+                       TextColor="Black"
+                       BackgroundColor="Transparent" />
+            </Frame>
+
+            <!-- Contraseña -->
+            <Frame CornerRadius="12" Padding="10" BackgroundColor="#F5F5F5" HasShadow="False">
+                <Entry Placeholder="Contraseña"
+                       Text="{Binding Password}"
+                       IsPassword="True"
+                       PlaceholderColor="Gray"
+                       TextColor="Black"
+                       BackgroundColor="Transparent" />
+            </Frame>
+
+            <!-- Recordarme y Olvidaste contraseña -->
+            <Grid ColumnSpacing="0" Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <HorizontalStackLayout>
+                    <CheckBox IsChecked="{Binding RememberMe}" Color="#EB060C" />
+                    <Label Text="Recordarme" VerticalOptions="Center" />
+                </HorizontalStackLayout>
+
+                <Label Grid.Column="1"
+                       Text="¿Olvidaste tu contraseña?"
+                       TextColor="#EB060C"
+                       FontSize="13"
+                       VerticalOptions="Center"
+                       HorizontalOptions="End" />
+            </Grid>
+
+            <!-- Botón login -->
+            <Button Text="Iniciar Sesión"
+                    Command="{Binding LoginCommand}"
+                    BackgroundColor="#EB060C"
+                    TextColor="White"
+                    CornerRadius="25"
+                    HeightRequest="50"
+                    FontAttributes="Bold"
+                    Margin="0,20,0,0" />
+
+            <!-- Registro -->
+            <HorizontalStackLayout HorizontalOptions="Center">
+                <HorizontalStackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SignUpTap}" />
+                </HorizontalStackLayout.GestureRecognizers>
+
+                <Label Text="Registrarse"
+                TextColor="#EB060C"
+                FontAttributes="Bold"/>
+            </HorizontalStackLayout>
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
