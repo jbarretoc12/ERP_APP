@@ -1,1 +1,0 @@
-D:\Aplicativos\AppRiveraDiesel\AppRiveraDiesel\AppRiveraDiesel.csproj;x64
