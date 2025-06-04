@@ -8,9 +8,8 @@ namespace AppRiveraDiesel.Models
 {
     public class RegistroRequest
     {
-        public string NombreCompleto { get; set; }
-        public string Correo { get; set; }
-        public string Contrasena { get; set; }
-        public string ConfirmarContrasena { get; set; }
+        public string? Nombre { get; set; }
+        public string? Correo { get; set; }
+        public string? Clave { get; set; }
     }
 }

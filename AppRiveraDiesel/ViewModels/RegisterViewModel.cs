@@ -1,5 +1,6 @@
 ﻿using AppRiveraDiesel.Models;
 using AppRiveraDiesel.Services;
+using AppRiveraDiesel.Views;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
@@ -8,76 +9,77 @@ namespace AppRiveraDiesel.ViewModels
 {
     public class RegisterViewModel : INotifyPropertyChanged
     {
-        private string _fullName;
-        private string _email;
-        private string _password;
-        private string _confirmPassword;
+        private string _nombre;
+        private string _correo;
+        private string _clave;
 
-        public string FullName
+        public string Nombre
         {
-            get => _fullName;
-            set { _fullName = value; OnPropertyChanged(); }
+            get => _nombre;
+            set
+            {
+                _nombre = value; OnPropertyChanged();
+            }
         }
 
-        public string Email
+        public string Correo
         {
-            get => _email;
-            set { _email = value; OnPropertyChanged(); }
+            get => _correo;
+            set
+            {
+                _correo = value; OnPropertyChanged();
+            }
         }
 
-        public string Password
+        public string Clave
         {
-            get => _password;
-            set { _password = value; OnPropertyChanged(); }
-        }
-
-        public string ConfirmPassword
-        {
-            get => _confirmPassword;
-            set { _confirmPassword = value; OnPropertyChanged(); }
+            get => _clave;
+            set
+            {
+                _clave = value; OnPropertyChanged();
+            }
         }
 
         public ICommand RegisterCommand { get; }
         public ICommand GoToLoginCommand { get; }
 
+        private readonly ApiService _apiService;
+
         public RegisterViewModel()
         {
             Console.WriteLine("===> Se creó RegisterViewModel");
-            RegisterCommand = new Command(OnRegister);
-            GoToLoginCommand = new Command(OnGoToLogin);
+            //RegisterCommand = new Command(OnRegister);
+            //GoToLoginCommand = new Command(OnGoToLogin);
+            _apiService = new ApiService();
+            RegisterCommand = new Command(async () => await OnRegister());
+            //RegisterCommand = new Command(() => OnRegister());
+
         }
 
-        private async void OnRegister()
+        //private async void OnRegister()
+        private async Task OnRegister()
         {
-            //if (string.IsNullOrWhiteSpace(FullName) || string.IsNullOrWhiteSpace(Email) ||
-            //    string.IsNullOrWhiteSpace(Password) || string.IsNullOrWhiteSpace(ConfirmPassword))
-            //{
-            //    await Shell.Current.DisplayAlert("Error", "Por favor completa todos los campos", "OK");
-            //    return;
-            //}
-
-            //if (Password != ConfirmPassword)
-            //{
-            //    await Shell.Current.DisplayAlert("Error", "Las contraseñas no coinciden", "OK");
-            //    return;
-            //}
-
-            //// Aquí podrías enviar los datos a tu API para registrar
-            //await Shell.Current.DisplayAlert("Registrado", "Cuenta creada correctamente", "OK");
-            //await Shell.Current.GoToAsync("//LoginPage");
-
-            var api = new ApiService();
             var request = new RegistroRequest
             {
-                NombreCompleto = FullName,
-                Correo = Email,
-                Contrasena = Password,
-                ConfirmarContrasena = ConfirmPassword
+                Nombre = Nombre,
+                Correo = Correo,
+                Clave = Clave
             };
 
-            bool result = await api.RegistrarUsuarioAsync(request);
+            bool result = await _apiService.RegisterAsync(request);
+
+            if (result)
+            {
+                await Application.Current.MainPage.DisplayAlert("Éxito", "Registro exitoso", "OK");
+                //await Shell.Current.GoToAsync("LoginPage");
+                await Shell.Current.GoToAsync(nameof(LoginPage));
+            }
+            else
+            {
+                await Application.Current.MainPage.DisplayAlert("Error", "No se pudo registrar", "OK");
+            }
+
             await Shell.Current.DisplayAlert("Registrado", "Cuenta creada correctamente", "OK");
-            await Shell.Current.GoToAsync("//LoginPage");
         }
 
         private async void OnGoToLogin()
