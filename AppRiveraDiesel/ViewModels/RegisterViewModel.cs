@@ -71,21 +71,22 @@ namespace AppRiveraDiesel.ViewModels
             if (result)
             {
                 await Application.Current.MainPage.DisplayAlert("Éxito", "Registro exitoso", "OK");
-                //await Shell.Current.GoToAsync("LoginPage");
                 await Shell.Current.GoToAsync(nameof(LoginPage));
+                //await Shell.Current.GoToAsync("//LoginPage");
+                //Application.Current.MainPage = new NavigationPage(new LoginPage());
             }
             else
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "No se pudo registrar", "OK");
             }
 
-            await Shell.Current.DisplayAlert("Registrado", "Cuenta creada correctamente", "OK");
+            //await Shell.Current.DisplayAlert("Registrado", "Cuenta creada correctamente", "OK");
         }
 
-        private async void OnGoToLogin()
+        /*private async void OnGoToLogin()
         {
             await Shell.Current.GoToAsync("//LoginPage");
-        }
+        }*/
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string name = "") =>
