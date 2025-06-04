@@ -8,13 +8,13 @@ public partial class FlyoutMenuPage : ContentPage
 	}
     private  void OnPage1Clicked(object sender, EventArgs e)
     {
-        ((MainPage)Application.Current.MainPage).NavigateTo(new ProyectosPage());
+        //((MainPage)Application.Current.MainPage).NavigateTo(new ProyectosPage());
         //await Navigation.PushAsync(new ProyectosPage());
     }
 
     private  void OnPage2Clicked(object sender, EventArgs e)
     {
-        ((MainPage)Application.Current.MainPage).NavigateTo(new TareosPage());
+       // ((MainPage)Application.Current.MainPage).NavigateTo(new TareosPage());
         //await Navigation.PushAsync(new TareosPage());
     }
 }

@@ -9,6 +9,7 @@ namespace AppRiveraDiesel
             InitializeComponent();
             Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
             Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
+
         }
     }
 }
